@@ -13,11 +13,11 @@ import org.w3c.dom.Document;
  *
  * @author ALUMNEDAM
  */
-public abstract class claseGenerica <T>{
+public abstract class gestioXML <T>{
     
     protected File fitxerXML; 
     
-    public claseGenerica(String rutaDocument){
+    public gestioXML(String rutaDocument){
         this.fitxerXML = new File(rutaDocument);
     }
     
