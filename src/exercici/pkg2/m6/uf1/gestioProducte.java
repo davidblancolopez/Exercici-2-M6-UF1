@@ -53,6 +53,8 @@ public class gestioProducte extends gestioXML<T> {
         } catch (Exception e) {
             System.out.println(e);
         }
+        
+        return producte;
     }
 
     @Override
