@@ -1,13 +1,12 @@
-//import org.w3c.dom.Document;
-//import org.w3c.dom.Element;
-
-
 package exercici.pkg2.m6.uf1;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import jdk.internal.org.xml.sax.SAXException;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 
 /**
  *
@@ -23,13 +22,17 @@ public abstract class gestioXML <T>{
     
     public Document carregarFitxerXML() throws SAXException, IOException, ParserConfig;
     
-    public void deasrDoc(Document doc) throws TransformerConfigrationException;
+    public void desarDoc(Document doc) throws TransformerConfigrationException;
     
     public abstract void afegirObjecte(T object);
     
     public abstract T cercarPerCodi(String codi);
     
-    public abstract List<T> ;
+    public abstract List<T> retornarObjectes();
+    
+    public abstract void modificarObjecte(T object);
+    
+    public abstract void eliminarObjecte(T object);
     
     
     
