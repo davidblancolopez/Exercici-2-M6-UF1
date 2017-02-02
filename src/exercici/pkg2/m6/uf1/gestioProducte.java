@@ -28,7 +28,7 @@ public class gestioProducte extends gestioXML<T> {
     }
 
     @Override
-    public T cercarPerCodi(String codi) {
+    public T cercarPerCodi(int codi) {
         try {
             Document doc = g.fileXmlPasDOM(new File("fitxer.xml"));
             Producte producte = null;

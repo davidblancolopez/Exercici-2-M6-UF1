@@ -28,7 +28,7 @@ public abstract class gestioXML <T>{
     
     public abstract void afegirObjecte(T object);
     
-    public abstract T cercarPerCodi(String codi);
+    public abstract T cercarPerCodi(int codi);
     
     public abstract List<T> retornarObjectes();
     
