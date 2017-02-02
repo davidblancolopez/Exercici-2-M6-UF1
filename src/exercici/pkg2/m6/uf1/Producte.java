@@ -11,22 +11,22 @@ package exercici.pkg2.m6.uf1;
  */
 public class Producte {
 
-    int codi, unitats;
-    String nom;
+    int unitats;
+    String codi, nom;
     double preu;
 
-    public Producte(int codi, int unitats, String nom, double preu) {
+    public Producte(String codi, int unitats, String nom, double preu) {
         this.codi = codi;
         this.unitats = unitats;
         this.nom = nom;
         this.preu = preu;
     }
 
-    public int getCodi() {
+    public String getCodi() {
         return codi;
     }
 
-    public void setCodi(int codi) {
+    public void setCodi(String codi) {
         this.codi = codi;
     }
 
