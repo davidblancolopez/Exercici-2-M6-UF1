@@ -5,57 +5,80 @@
  */
 package exercici.pkg2.m6.uf1;
 
+import java.io.File;
 import java.util.List;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 /**
  *
  * @author ALUMNEDAM
  */
-public class gestioProducte extends gestioXML<T>{
+public class gestioProducte extends gestioXML<T> {
 
     @Override
     public void afegirObjecte(T object) {
-        try{
-            
-        }catch(Exception e){
+        try {
+
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @Override
     public T cercarPerCodi(String codi) {
-        try{
-            
-        }catch(Exception e){
+        try {
+            Document doc = g.fileXmlPasDOM(new File("fitxer.xml"));
+            Producte producte = null;
+
+            //S'obtenen les entrades amb nom persona
+            NodeList nodes = doc.getElementsByTagName("persona");
+
+            //S'obtenen els valors emmagatzemats en el node de codi=1
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Node node = nodes.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element e = (Element) node;
+                    if (e.getAttribute("codi").equals(String.valueOf(codi))) {
+                        String nom = GestioXML.getValue("nom", e);
+                        String cognom = GestioXML.getValue("cognom", e);
+                        producte = new Producte(codi, nom, cognom);
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @Override
     public List<T> retornarObjectes() {
-        try{
-            
-        }catch(Exception e){
+        try {
+
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @Override
     public void modificarObjecte(T object) {
-        try{
-            
-        }catch(Exception e){
+        try {
+
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @Override
     public void eliminarObjecte(T object) {
-        try{
-            
-        }catch(Exception e){
+        try {
+
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
-    
+
 }
