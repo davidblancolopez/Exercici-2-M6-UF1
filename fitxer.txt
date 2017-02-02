@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persones>
+	<persona codi='1'>
+		<nom>Maria </nom>
+		<cognom>Gore</cognom>
+	</persona>
+	<persona codi='2'>
+		<nom>Joan </nom>
+		<cognom>Remio</cognom>
+	</persona>
+</persones>

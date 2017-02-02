@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<productes>
+	<producte codi='1'>
+		<nom>Patatas</nom>
+		<preu>5</preu>
+		<unitats>5</unitats>
+	</producte>
+	<producte codi='2'>
+		<nom>Ketchup</nom>
+		<preu>1</preu>
+		<unitats>5</unitats>
+	</producte>
+</productes>
