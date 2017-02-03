@@ -21,7 +21,7 @@ public class gestioProducte extends gestioXML<T> {
     @Override
     public void afegirObjecte(T object) {
         try {
-
+            
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -59,11 +59,13 @@ public class gestioProducte extends gestioXML<T> {
 
     @Override
     public List<T> retornarObjectes() {
+        List<T> llista = null;
         try {
 
         } catch (Exception e) {
             System.out.println(e);
         }
+        return llista;
     }
 
     @Override

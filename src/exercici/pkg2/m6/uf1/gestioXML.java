@@ -23,9 +23,9 @@ public abstract class gestioXML <T>{
         this.fitxerXML = new File(rutaDocument);
     }
     
-    public Document carregarFitxerXML() throws SAXException, IOException, ParserConfig;
+    public abstract Document carregarFitxerXML() throws SAXException, IOException, ParserConfig;
     
-    public void desarDoc(Document doc) throws TransformerConfigrationException;
+    public abstract void desarDoc(Document doc) throws TransformerConfigrationException;
     
     public abstract void afegirObjecte(T object);
     
