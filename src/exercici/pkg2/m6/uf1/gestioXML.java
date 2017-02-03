@@ -3,6 +3,8 @@ package exercici.pkg2.m6.uf1;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
 import jdk.internal.org.xml.sax.SAXException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -23,9 +25,9 @@ public abstract class gestioXML <T>{
         this.fitxerXML = new File(rutaDocument);
     }
     
-    public abstract Document carregarFitxerXML() throws SAXException, IOException, ParserConfig;
+    public abstract Document carregarFitxerXML() throws SAXException, IOException, ParserConfigurationException;
     
-    public abstract void desarDoc(Document doc) throws TransformerConfigrationException;
+    public abstract void desarDoc(Document doc) throws TransformerConfigurationException;
     
     public abstract void afegirObjecte(T object);
     
