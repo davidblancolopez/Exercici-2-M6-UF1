@@ -15,13 +15,14 @@ public class Producte {
     String nom;
     double preu;
 
-    public Producte(int codi, int unitats, String nom, double preu) {
+    public Producte(int codi, String nom, double preu, int unitats) {
         this.codi = codi;
         this.unitats = unitats;
         this.nom = nom;
         this.preu = preu;
     }
 
+   
     public int getCodi() {
         return codi;
     }

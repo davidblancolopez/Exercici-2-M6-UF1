@@ -36,7 +36,7 @@ public class gestioProducte extends gestioXML<T> {
             //S'obtenen les entrades amb nom persona
             NodeList nodes = doc.getElementsByTagName("persona");
 
-            //S'obtenen els valors emmagatzemats en el node de codi=1
+            //S'obtenen els valors emmagatzemats en el node de codi
             for (int i = 0; i < nodes.getLength(); i++) {
                 Node node = nodes.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {

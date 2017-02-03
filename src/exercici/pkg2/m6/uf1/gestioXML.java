@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
  * @author ALUMNEDAM
  */
 public abstract class gestioXML <T>{
+
     
     protected File fitxerXML; 
     
