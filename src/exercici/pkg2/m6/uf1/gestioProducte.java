@@ -9,6 +9,10 @@ import java.io.File;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -35,6 +39,12 @@ public class gestioProducte extends gestioXML<T> {
             DocumentBuilderFactory docBuFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuFactory.newDocumentBuilder();
             Document doc = docBuilder.parse(fitxerXML);
+
+            Transformer trans = TransformerFactory.newInstance().newTransformer();
+            StreamResult result = new StreamResult(fitxerXML);
+            DOMSource source = new DOMSource(doc);
+            trans.transform(source, result);
+
             Producte producte = null;
 
             //S'obtenen les entrades amb nom persona
@@ -46,7 +56,7 @@ public class gestioProducte extends gestioXML<T> {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element e = (Element) node;
                     if (e.getAttribute("codi").equals(String.valueOf(codi))) {
-                        String nom ;
+                        String nom;
                         double preu;
                         int unitats;
 //                        producte = new Producte(codi, nom, preu, unitats);
