@@ -7,6 +7,8 @@ package exercici.pkg2.m6.uf1;
 
 import java.io.File;
 import java.util.List;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -21,7 +23,7 @@ public class gestioProducte extends gestioXML<T> {
     @Override
     public void afegirObjecte(T object) {
         try {
-            
+
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -30,28 +32,32 @@ public class gestioProducte extends gestioXML<T> {
     @Override
     public T cercarPerCodi(int codi) {
         try {
-//            Document doc = g.fileXmlPasDOM(new File("fitxer.xml"));
-//            Producte producte = null;
-//
-//            //S'obtenen les entrades amb nom persona
-//            NodeList nodes = doc.getElementsByTagName("persona");
-//
-//            //S'obtenen els valors emmagatzemats en el node de codi
-//            for (int i = 0; i < nodes.getLength(); i++) {
-//                Node node = nodes.item(i);
-//                if (node.getNodeType() == Node.ELEMENT_NODE) {
-//                    Element e = (Element) node;
-//                    if (e.getAttribute("codi").equals(String.valueOf(codi))) {
-//                       
+            DocumentBuilderFactory docBuFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docBuFactory.newDocumentBuilder();
+            Document doc = docBuilder.parse(fitxerXML);
+            Producte producte = null;
+
+            //S'obtenen les entrades amb nom persona
+            NodeList nodes = doc.getElementsByTagName("persona");
+
+            //S'obtenen els valors emmagatzemats en el node de codi
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Node node = nodes.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element e = (Element) node;
+                    if (e.getAttribute("codi").equals(String.valueOf(codi))) {
+                        String nom ;
+                        double preu;
+                        int unitats;
 //                        producte = new Producte(codi, nom, preu, unitats);
-//                        break;
-//                    }
-//                }
-//            }
+                        break;
+                    }
+                }
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
-        
+
         return producte;
     }
 

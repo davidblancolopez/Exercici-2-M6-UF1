@@ -24,9 +24,6 @@ public abstract class gestioXML<T> {
     public gestioXML(String rutaDocument) throws ParserConfigurationException, org.xml.sax.SAXException, IOException {
         this.fitxerXML = new File(rutaDocument);
 
-        DocumentBuilderFactory docBuFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = docBuFactory.newDocumentBuilder();
-        Document doc = docBuilder.parse(fitxerXML);
     }
 
     public abstract Document carregarFitxerXML() throws SAXException, IOException, ParserConfigurationException;
