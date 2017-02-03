@@ -56,7 +56,7 @@ public class gestioProducte extends gestioXML<T> {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element e = (Element) node;
                     if (e.getAttribute("codi").equals(String.valueOf(codi))) {
-                        String nom;
+                        String nom ;
                         double preu;
                         int unitats;
 //                        producte = new Producte(codi, nom, preu, unitats);
