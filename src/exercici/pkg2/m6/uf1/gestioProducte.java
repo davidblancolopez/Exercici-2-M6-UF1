@@ -48,6 +48,8 @@ public class gestioProducte extends gestioXML<T> {
     @Override
     public Producte cercarPerCodi(int codi) {
         try {
+            Producte producte = null; 
+            
             Document doc = cargar();
             NodeList nl = doc.getElementsByTagName("codi");
 
@@ -57,19 +59,20 @@ public class gestioProducte extends gestioXML<T> {
                     Element e = (Element) node;
                     if (e.getAttribute("codi").equals(String.valueOf(codi))) {
                         String nom = GestioDocuments.getValue("nom", e);
-                        String cognom = GestioDocuments.getValue("cognom", e);
-                        per = new Persona(codi, nom, cognom);
+                        double preu = GestioDocuments.getValue("nom", e);
+                        int unitats = GestioDocuments.getValue("cognom", e);
+                        producte = new Producte(codi, nom, preu, unitats);
                         break;
                     }
                 }
 
             }catch (ParserConfigurationException | SAXException | IOException ex) {
             Logger.getLogger(GestioProducte.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            }
 
         return producte;
+        }
     }
-
     
 
 }
