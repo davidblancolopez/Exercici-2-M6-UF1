@@ -6,9 +6,11 @@
 package exercici.pkg2.m6.uf1;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -17,12 +19,22 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  *
  * @author ALUMNEDAM
  */
 public class gestioProducte extends gestioXML<T> {
+    private File arxiu;
+
+    public gestioProducte(File arxiu, String rutaDocument) throws ParserConfigurationException, SAXException, IOException {
+        super(rutaDocument);
+        this.arxiu = new File(rutaDocument);
+    }
+    
+    
+    
 
     @Override
     public void afegirObjecte(T object) {
@@ -34,70 +46,30 @@ public class gestioProducte extends gestioXML<T> {
     }
 
     @Override
-    public T cercarPerCodi(int codi) {
+    public Producte cercarPerCodi(int codi) {
         try {
-            DocumentBuilderFactory docBuFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docBuFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse(fitxerXML);
+            Document doc = cargar();
+            NodeList nl = doc.getElementsByTagName("codi");
 
-            Transformer trans = TransformerFactory.newInstance().newTransformer();
-            StreamResult result = new StreamResult(fitxerXML);
-            DOMSource source = new DOMSource(doc);
-            trans.transform(source, result);
-
-            Producte producte = null;
-
-            //S'obtenen les entrades amb nom persona
-            NodeList nodes = doc.getElementsByTagName("persona");
-
-            //S'obtenen els valors emmagatzemats en el node de codi
-            for (int i = 0; i < nodes.getLength(); i++) {
-                Node node = nodes.item(i);
+            for (int i = 0; i < nl.getLength(); i++) {
+                Node node = nl.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element e = (Element) node;
                     if (e.getAttribute("codi").equals(String.valueOf(codi))) {
-                        String nom ;
-                        double preu;
-                        int unitats;
-//                        producte = new Producte(codi, nom, preu, unitats);
+                        String nom = GestioDocuments.getValue("nom", e);
+                        String cognom = GestioDocuments.getValue("cognom", e);
+                        per = new Persona(codi, nom, cognom);
                         break;
                     }
                 }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
+
+            }catch (ParserConfigurationException | SAXException | IOException ex) {
+            Logger.getLogger(GestioProducte.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return producte;
     }
 
-    @Override
-    public List<T> retornarObjectes() {
-
-        try {
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return llista;
-    }
-
-    @Override
-    public void modificarObjecte(T object) {
-        try {
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    @Override
-    public void eliminarObjecte(T object) {
-        try {
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
+    
 
 }
