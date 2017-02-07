@@ -1,6 +1,5 @@
 package exercici.pkg2.m6.uf1;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -27,19 +26,17 @@ public abstract class gestioXML<T> {
         this.fitxerXML = new File(rutaDocument);
 
     }
-    
-    
-        public Document desarDocument(Document doc) throws TransformerException {
+
+    public Document desarDocument(Document doc) throws TransformerException {
         Transformer trns = TransformerFactory.newInstance().newTransformer();
         StreamResult result = new StreamResult(fitxerXML);
         DOMSource source = new DOMSource(doc);
-         
+
         trns.transform(source, result);
-        
+
         return doc;
     }
 
-        
     public Document cargar() throws ParserConfigurationException, SAXException, IOException {
 
         DocumentBuilderFactory docBuFactory = DocumentBuilderFactory.newInstance();
