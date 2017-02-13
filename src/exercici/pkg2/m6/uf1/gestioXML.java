@@ -2,6 +2,7 @@ package exercici.pkg2.m6.uf1;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,32 +28,19 @@ public abstract class gestioXML<T> {
 
     }
 
-    public Document desarDocument(Document doc) throws TransformerException {
-        Transformer trns = TransformerFactory.newInstance().newTransformer();
-        StreamResult result = new StreamResult(fitxerXML);
-        DOMSource source = new DOMSource(doc);
-
-        trns.transform(source, result);
-
-        return doc;
-    }
-
-    public Document cargar() throws ParserConfigurationException, SAXException, IOException {
-
-        DocumentBuilderFactory docBuFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = docBuFactory.newDocumentBuilder();
-        Document doc = docBuilder.parse(fitxerXML);
-        return doc;
-    }
-
-    public abstract void afegirObjecte(T object);
-
-    public abstract T cercarPerCodi(int codi);
-
-    public abstract List<T> retornarObjectes();
-
-    public abstract void modificarObjecte(T object);
-
-    public abstract void eliminarObjecte(T object);
+  
+    public abstract Document ActualitzarDOM();
+    
+    public abstract void GuardarEstatDom(Document dom);
+    
+    public abstract void AfegirElementDom (T t, Document dom);
+    
+    public abstract T obtindreElementPerCodi(Document doc, int codigo);
+    
+    public abstract ArrayList<T> obtindreLlistaElements(Document doc);
+    
+    public abstract boolean modificarElementDom (Document doc, int codigo, String nombre, double precio, int cantidad);
+    
+    public abstract boolean eliminarElementDom (Document doc, int codigo);
 
 }
