@@ -41,7 +41,6 @@ public class gestioProducte extends gestioXML<Producte> {
     @Override
     public Document ActualitzarDOM() {
         try {
-            //Obtenemos el dom del fichero xml.
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fitxerXML);
@@ -78,55 +77,55 @@ public class gestioProducte extends gestioXML<Producte> {
     @Override
     public void AfegirElementDom(Producte p, Document dom) {
         //Creas un tag producto
-        Element productoE = dom.createElement("Producte");
+        Element producteEle = dom.createElement("Producte");
 
         //Creas los tags que iran dentro de producto y el texto que ira en su interior
         //codigo
-        Element codigoE = dom.createElement("codi");
-        Text codigoT = dom.createTextNode(p.getCodi() + "");
+        Element codiEle = dom.createElement("codi");
+        Text codi = dom.createTextNode(p.getCodi() + "");
 
         //nombre
-        Element nombreE = dom.createElement("nom");
-        Text nombreT = dom.createTextNode(p.getNom());
+        Element nomEle = dom.createElement("nom");
+        Text nom = dom.createTextNode(p.getNom());
 
         //precio
-        Element precioE = dom.createElement("preu");
-        Text precioT = dom.createTextNode(p.getPreu() + "");
+        Element preuEle = dom.createElement("preu");
+        Text preu = dom.createTextNode(p.getPreu() + "");
 
         //cantidad
-        Element cantidadE = dom.createElement("unitats");
-        Text cantidadT = dom.createTextNode(p.getUnitats() + "");
+        Element unitatsEle = dom.createElement("unitats");
+        Text unitats = dom.createTextNode(p.getUnitats() + "");
 
         //S'afegeix cada node al node pare que li correspongui
-        dom.getDocumentElement().appendChild(productoE);
-        productoE.appendChild(codigoE);
-        codigoE.appendChild(codigoT);
+        dom.getDocumentElement().appendChild(producteEle);
+        producteEle.appendChild(codiEle);
+        codiEle.appendChild(codi);
 
-        productoE.appendChild(nombreE);
-        nombreE.appendChild(nombreT);
+        producteEle.appendChild(nomEle);
+        nomEle.appendChild(nom);
 
-        productoE.appendChild(precioE);
-        precioE.appendChild(precioT);
+        producteEle.appendChild(preuEle);
+        preuEle.appendChild(preu);
 
-        productoE.appendChild(cantidadE);
-        cantidadE.appendChild(cantidadT);
+        producteEle.appendChild(unitatsEle);
+        unitatsEle.appendChild(unitats);
 
     }
 
     @Override
-    public Producte obtindreElementPerCodi(Document doc, int codigo) {
-        NodeList listaElementos = doc.getElementsByTagName("Producte");
+    public Producte obtindreElementPerCodi(Document dom, int codigo) {
+        NodeList listaElementos = dom.getElementsByTagName("Producte");
 
         for (int i = 0; i < listaElementos.getLength(); i++) {
-            NodeList nodosHijo = listaElementos.item(i).getChildNodes();
+            NodeList nodesFill = listaElementos.item(i).getChildNodes();
 
-            int codi = Integer.parseInt(nodosHijo.item(0).getTextContent());
+            int codi = Integer.parseInt(nodesFill.item(0).getTextContent());
 
             if (codi == codigo) {
 
-                String nombre = nodosHijo.item(1).getTextContent();
-                double precio = Double.parseDouble(nodosHijo.item(2).getTextContent());
-                int cantidad = Integer.parseInt(nodosHijo.item(3).getTextContent());
+                String nombre = nodesFill.item(1).getTextContent();
+                double precio = Double.parseDouble(nodesFill.item(2).getTextContent());
+                int cantidad = Integer.parseInt(nodesFill.item(3).getTextContent());
                 return new Producte(codi, nombre, precio, cantidad);
 
             }
@@ -137,17 +136,17 @@ public class gestioProducte extends gestioXML<Producte> {
     @Override
     public ArrayList<Producte> obtindreLlistaElements(Document doc) {
         ArrayList<Producte> listaProductos = new ArrayList<>();
-        NodeList listaElementos = doc.getElementsByTagName("Producte");
+        NodeList llistaElements = doc.getElementsByTagName("Producte");
 
-        for (int i = 0; i < listaElementos.getLength(); i++) {
-            NodeList nodosHijo = listaElementos.item(i).getChildNodes();
+        for (int i = 0; i < llistaElements.getLength(); i++) {
+            NodeList nodesFill = llistaElements.item(i).getChildNodes();
 
-            int codigo = Integer.parseInt(nodosHijo.item(0).getTextContent());
-            String nombre = nodosHijo.item(1).getTextContent();
-            double precio = Double.parseDouble(nodosHijo.item(2).getTextContent());
-            int cantidad = Integer.parseInt(nodosHijo.item(3).getTextContent());
+            int codi = Integer.parseInt(nodesFill.item(0).getTextContent());
+            String nom = nodesFill.item(1).getTextContent();
+            double preu = Double.parseDouble(nodesFill.item(2).getTextContent());
+            int unitats = Integer.parseInt(nodesFill.item(3).getTextContent());
 
-            listaProductos.add(new Producte(codigo, nombre, precio, cantidad));
+            listaProductos.add(new Producte(codi, nom, preu, unitats));
         }
 
         return listaProductos;
@@ -158,12 +157,12 @@ public class gestioProducte extends gestioXML<Producte> {
         NodeList listaElementos = doc.getElementsByTagName("Producto");
 
         for (int i = 0; i < listaElementos.getLength(); i++) {
-            NodeList nodosHijo = listaElementos.item(i).getChildNodes();
-            System.out.println(nodosHijo.item(0).getTextContent());
-            int codi = Integer.parseInt(nodosHijo.item(0).getTextContent());
+            NodeList nodesFill = listaElementos.item(i).getChildNodes();
+            System.out.println(nodesFill.item(0).getTextContent());
+            int codi = Integer.parseInt(nodesFill.item(0).getTextContent());
             if (codi == codigo) {
 
-                Element element = (Element) nodosHijo;
+                Element element = (Element) nodesFill;
                 element.getChildNodes().item(1).setTextContent(nombre);
                 element.getChildNodes().item(2).setTextContent(precio + "");
                 element.getChildNodes().item(3).setTextContent(cantidad + "");
@@ -176,14 +175,14 @@ public class gestioProducte extends gestioXML<Producte> {
 
     @Override
     public boolean eliminarElementDom(Document doc, int codigo) {
-        NodeList listaElementos = doc.getElementsByTagName("Producto");
+        NodeList llistaElements = doc.getElementsByTagName("Producto");
 
-        for (int i = 0; i < listaElementos.getLength(); i++) {
+        for (int i = 0; i < llistaElements.getLength(); i++) {
 
-            if (Integer.parseInt(listaElementos.item(i).getChildNodes().item(0).getTextContent())
+            if (Integer.parseInt(llistaElements.item(i).getChildNodes().item(0).getTextContent())
                     == codigo) {
 
-                Element elementoABorrar = (Element) listaElementos.item(i);
+                Element elementoABorrar = (Element) llistaElements.item(i);
                 elementoABorrar.getParentNode().removeChild(elementoABorrar);
                 return true;
             }
