@@ -76,27 +76,25 @@ public class gestioProducte extends gestioXML<Producte> {
 
     @Override
     public void AfegirElementDom(Producte p, Document dom) {
-        //Creas un tag producto
+        //tag producte
         Element producteEle = dom.createElement("Producte");
 
-        //Creas los tags que iran dentro de producto y el texto que ira en su interior
-        //codigo
+        //Tags interiors de l'element.
+
         Element codiEle = dom.createElement("codi");
         Text codi = dom.createTextNode(p.getCodi() + "");
 
-        //nombre
         Element nomEle = dom.createElement("nom");
         Text nom = dom.createTextNode(p.getNom());
 
-        //precio
         Element preuEle = dom.createElement("preu");
         Text preu = dom.createTextNode(p.getPreu() + "");
 
-        //cantidad
         Element unitatsEle = dom.createElement("unitats");
         Text unitats = dom.createTextNode(p.getUnitats() + "");
 
-        //S'afegeix cada node al node pare que li correspongui
+        
+        //S'afegeixen els tags al element pare.
         dom.getDocumentElement().appendChild(producteEle);
         producteEle.appendChild(codiEle);
         codiEle.appendChild(codi);
