@@ -76,26 +76,26 @@ public class gestioProducte extends gestioXML<Producte> {
     }
 
     @Override
-    public void AfegirElementDom(Producte t, Document dom) {
+    public void AfegirElementDom(Producte p, Document dom) {
         //Creas un tag producto
-        Element productoE = dom.createElement("Producto");
+        Element productoE = dom.createElement("Producte");
 
         //Creas los tags que iran dentro de producto y el texto que ira en su interior
         //codigo
-        Element codigoE = dom.createElement("codigo");
-        Text codigoT = dom.createTextNode(t.getCodi() + "");
+        Element codigoE = dom.createElement("codi");
+        Text codigoT = dom.createTextNode(p.getCodi() + "");
 
         //nombre
-        Element nombreE = dom.createElement("nombre");
-        Text nombreT = dom.createTextNode(t.getNom());
+        Element nombreE = dom.createElement("nom");
+        Text nombreT = dom.createTextNode(p.getNom());
 
         //precio
-        Element precioE = dom.createElement("precio");
-        Text precioT = dom.createTextNode(t.getPreu() + "");
+        Element precioE = dom.createElement("preu");
+        Text precioT = dom.createTextNode(p.getPreu() + "");
 
         //cantidad
-        Element cantidadE = dom.createElement("cantidad");
-        Text cantidadT = dom.createTextNode(t.getUnitats() + "");
+        Element cantidadE = dom.createElement("unitats");
+        Text cantidadT = dom.createTextNode(p.getUnitats() + "");
 
         //S'afegeix cada node al node pare que li correspongui
         dom.getDocumentElement().appendChild(productoE);
@@ -115,7 +115,7 @@ public class gestioProducte extends gestioXML<Producte> {
 
     @Override
     public Producte obtindreElementPerCodi(Document doc, int codigo) {
-        NodeList listaElementos = doc.getElementsByTagName("Producto");
+        NodeList listaElementos = doc.getElementsByTagName("Producte");
 
         for (int i = 0; i < listaElementos.getLength(); i++) {
             NodeList nodosHijo = listaElementos.item(i).getChildNodes();
@@ -137,7 +137,7 @@ public class gestioProducte extends gestioXML<Producte> {
     @Override
     public ArrayList<Producte> obtindreLlistaElements(Document doc) {
         ArrayList<Producte> listaProductos = new ArrayList<>();
-        NodeList listaElementos = doc.getElementsByTagName("Producto");
+        NodeList listaElementos = doc.getElementsByTagName("Producte");
 
         for (int i = 0; i < listaElementos.getLength(); i++) {
             NodeList nodosHijo = listaElementos.item(i).getChildNodes();
